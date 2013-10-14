@@ -7,7 +7,7 @@
 
 class OctaveFactory {
 public:
-	Octave* createOctave(std::vector<cv::Mat>* pLaplaciansOfGaussians) {
-		return new Octave(pLaplaciansOfGaussians);
+	Octave* createOctave(std::vector<cv::Mat>* pLaplaciansOfGaussians, unsigned scaleFactor) {
+		return new Octave(pLaplaciansOfGaussians, scaleFactor);
 	}
 };

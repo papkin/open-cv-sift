@@ -16,7 +16,7 @@ public:
 		this->mpImage = pImage;
 		this->mpOctaveFactory = pOctaveFactory;
 	}
-	Octave* evaluateOctave(int octaveSize) {
+	Octave* evaluateOctave(int octaveSize, unsigned scaleDownFactor) {
 		cv::Mat image = *mpImage;
 		std::vector < cv::Mat > * pLaplaciansOfGaussians = new std::vector <cv::Mat>();
 		for(int i = 0; i != octaveSize; ++i) {
@@ -25,6 +25,6 @@ public:
 		 	pLaplaciansOfGaussians->push_back((blurredImage-image) * sigma * (i+1) );
 			image = blurredImage;
 		}
-		return mpOctaveFactory->createOctave(pLaplaciansOfGaussians);
+		return mpOctaveFactory->createOctave(pLaplaciansOfGaussians, scaleDownFactor);
 	}
 };

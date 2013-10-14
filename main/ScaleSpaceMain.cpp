@@ -14,6 +14,6 @@ int main(int argc, char* argv[]) {
 	OctaveFactory* pOctaveFactory = new OctaveFactory();
 	BlurrerFactory* pBlurrerFactory = new BlurrerFactory();
 	ScaleSpace* pScaleSpace = new ScaleSpace(pOctaveFactory, pBlurrerFactory);
-	pScaleSpace->readImage(&image, 5);
+	pScaleSpace->generate(&image, 4, 5);
 	return 0;
 }

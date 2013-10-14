@@ -16,19 +16,19 @@ public:
 		mpOctaveFactory = pOctaveFactory;
 		mpBlurrerFactory = pBlurrerFactory;
 	}
-	void readImage(cv::Mat* pImage, int numberOfOctaves) {
+	void generate(cv::Mat* pImage, int numberOfOctaves, int blursPerOctave) {
 		cv::Mat image = *pImage;
+		unsigned scaleDownFactor = 1;
 		for(int i = 0; i != numberOfOctaves; ++i) {
 			Blurrer* pBlurrer = mpBlurrerFactory->createBlurrer(
 				&image,
 				mpOctaveFactory
 			);
-			mOctaves.push_back(pBlurrer->evaluateOctave(5));
+			mOctaves.push_back(pBlurrer->evaluateOctave(blursPerOctave, scaleDownFactor));
 			cv::Mat resizedImage;
 			resize(image, resizedImage, cv::Size(0,0), 0.5, 0.5);
 			image = resizedImage;
-			//TODO Sort the constants out (Dependecy Injection)
-			//TODO No hardcoding
+			scaleDownFactor *= 2;
 		}
 	}
 };
