@@ -1,12 +1,7 @@
 #pragma once
-
-#include "Point.hpp"
 #include "Node.hpp"
-
+#include "Point.hpp"
 class NodeFactory {
-private:
 public:
-	Node* createNode(Point* pPoint, bool isVertical) {
-		return new Node(pPoint, isVertical);	
-	}
+	Node* createNode(Point* pPoint, bool isVertical);
 };
