@@ -11,9 +11,11 @@
 
 int main(int argc, char* argv[]) {
 	cv::Mat image = cv::imread(argv[1], 1);
+	cvtColor(image, image, CV_BGR2GRAY);
 	OctaveFactory* pOctaveFactory = new OctaveFactory();
 	BlurrerFactory* pBlurrerFactory = new BlurrerFactory();
 	ScaleSpace* pScaleSpace = new ScaleSpace(pOctaveFactory, pBlurrerFactory);
-	pScaleSpace->generate(&image, 4, 5);
+	pScaleSpace->generate(&image, 3, 5);
+	pScaleSpace->getFeatures();
 	return 0;
 }

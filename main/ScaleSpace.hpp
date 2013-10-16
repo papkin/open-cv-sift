@@ -31,4 +31,9 @@ public:
 			scaleDownFactor *= 2;
 		}
 	}
+	void getFeatures() {
+		for(std::vector<Octave*>::iterator octaveIterator = mOctaves.begin(); octaveIterator != mOctaves.end(); ++octaveIterator) {
+			(*octaveIterator)->getFeatures();
+		}
+	}
 };
